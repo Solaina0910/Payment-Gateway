@@ -69,6 +69,37 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="getPaymentTransactionByTransactionID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="transactionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getPaymentTransactionByTransactionIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getPaymentTransactionByTransactionIDResult" type="tns:viewPaymentTransactionDataType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="viewPaymentTransactionDataType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="merchantID" />
+          <s:element minOccurs="0" maxOccurs="1" name="bankID" />
+          <s:element minOccurs="0" maxOccurs="1" name="currencyID" />
+          <s:element minOccurs="0" maxOccurs="1" name="cardType" />
+          <s:element minOccurs="0" maxOccurs="1" name="cardNumber" />
+          <s:element minOccurs="0" maxOccurs="1" name="nameOnCard" />
+          <s:element minOccurs="0" maxOccurs="1" name="expiryMonth" />
+          <s:element minOccurs="0" maxOccurs="1" name="expiryYear" />
+          <s:element minOccurs="0" maxOccurs="1" name="CVV" />
+          <s:element minOccurs="0" maxOccurs="1" name="amount" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankResponse" />
+          <s:element minOccurs="0" maxOccurs="1" name="bankResponseID" />
+          <s:element minOccurs="0" maxOccurs="1" name="status" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="UpdateStatusPaymentTransaction">
         <s:complexType>
           <s:sequence>
@@ -177,6 +208,12 @@
   <wsdl:message name="retrievePaymentTransactionByTransactionIDSoapOut">
     <wsdl:part name="parameters" element="tns:retrievePaymentTransactionByTransactionIDResponse" />
   </wsdl:message>
+  <wsdl:message name="getPaymentTransactionByTransactionIDSoapIn">
+    <wsdl:part name="parameters" element="tns:getPaymentTransactionByTransactionID" />
+  </wsdl:message>
+  <wsdl:message name="getPaymentTransactionByTransactionIDSoapOut">
+    <wsdl:part name="parameters" element="tns:getPaymentTransactionByTransactionIDResponse" />
+  </wsdl:message>
   <wsdl:message name="UpdateStatusPaymentTransactionSoapIn">
     <wsdl:part name="parameters" element="tns:UpdateStatusPaymentTransaction" />
   </wsdl:message>
@@ -219,6 +256,10 @@
     <wsdl:operation name="retrievePaymentTransactionByTransactionID">
       <wsdl:input message="tns:retrievePaymentTransactionByTransactionIDSoapIn" />
       <wsdl:output message="tns:retrievePaymentTransactionByTransactionIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getPaymentTransactionByTransactionID">
+      <wsdl:input message="tns:getPaymentTransactionByTransactionIDSoapIn" />
+      <wsdl:output message="tns:getPaymentTransactionByTransactionIDSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="UpdateStatusPaymentTransaction">
       <wsdl:input message="tns:UpdateStatusPaymentTransactionSoapIn" />
@@ -263,6 +304,15 @@
     </wsdl:operation>
     <wsdl:operation name="retrievePaymentTransactionByTransactionID">
       <soap:operation soapAction="http://tempuri.org/retrievePaymentTransactionByTransactionID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPaymentTransactionByTransactionID">
+      <soap:operation soapAction="http://tempuri.org/getPaymentTransactionByTransactionID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -338,6 +388,15 @@
     </wsdl:operation>
     <wsdl:operation name="retrievePaymentTransactionByTransactionID">
       <soap12:operation soapAction="http://tempuri.org/retrievePaymentTransactionByTransactionID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPaymentTransactionByTransactionID">
+      <soap12:operation soapAction="http://tempuri.org/getPaymentTransactionByTransactionID" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

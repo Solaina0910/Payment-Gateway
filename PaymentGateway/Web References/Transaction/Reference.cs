@@ -36,6 +36,8 @@ namespace PaymentGateway.Transaction {
         
         private System.Threading.SendOrPostCallback retrievePaymentTransactionByTransactionIDOperationCompleted;
         
+        private System.Threading.SendOrPostCallback getPaymentTransactionByTransactionIDOperationCompleted;
+        
         private System.Threading.SendOrPostCallback UpdateStatusPaymentTransactionOperationCompleted;
         
         private System.Threading.SendOrPostCallback getMerchantsOperationCompleted;
@@ -92,6 +94,9 @@ namespace PaymentGateway.Transaction {
         
         /// <remarks/>
         public event retrievePaymentTransactionByTransactionIDCompletedEventHandler retrievePaymentTransactionByTransactionIDCompleted;
+        
+        /// <remarks/>
+        public event getPaymentTransactionByTransactionIDCompletedEventHandler getPaymentTransactionByTransactionIDCompleted;
         
         /// <remarks/>
         public event UpdateStatusPaymentTransactionCompletedEventHandler UpdateStatusPaymentTransactionCompleted;
@@ -212,6 +217,35 @@ namespace PaymentGateway.Transaction {
             if ((this.retrievePaymentTransactionByTransactionIDCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.retrievePaymentTransactionByTransactionIDCompleted(this, new retrievePaymentTransactionByTransactionIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/getPaymentTransactionByTransactionID", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public viewPaymentTransactionDataType getPaymentTransactionByTransactionID(string transactionID) {
+            object[] results = this.Invoke("getPaymentTransactionByTransactionID", new object[] {
+                        transactionID});
+            return ((viewPaymentTransactionDataType)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void getPaymentTransactionByTransactionIDAsync(string transactionID) {
+            this.getPaymentTransactionByTransactionIDAsync(transactionID, null);
+        }
+        
+        /// <remarks/>
+        public void getPaymentTransactionByTransactionIDAsync(string transactionID, object userState) {
+            if ((this.getPaymentTransactionByTransactionIDOperationCompleted == null)) {
+                this.getPaymentTransactionByTransactionIDOperationCompleted = new System.Threading.SendOrPostCallback(this.OngetPaymentTransactionByTransactionIDOperationCompleted);
+            }
+            this.InvokeAsync("getPaymentTransactionByTransactionID", new object[] {
+                        transactionID}, this.getPaymentTransactionByTransactionIDOperationCompleted, userState);
+        }
+        
+        private void OngetPaymentTransactionByTransactionIDOperationCompleted(object arg) {
+            if ((this.getPaymentTransactionByTransactionIDCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.getPaymentTransactionByTransactionIDCompleted(this, new getPaymentTransactionByTransactionIDCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -377,6 +411,171 @@ namespace PaymentGateway.Transaction {
     }
     
     /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.2612.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class viewPaymentTransactionDataType {
+        
+        private object merchantIDField;
+        
+        private object bankIDField;
+        
+        private object currencyIDField;
+        
+        private object cardTypeField;
+        
+        private object cardNumberField;
+        
+        private object nameOnCardField;
+        
+        private object expiryMonthField;
+        
+        private object expiryYearField;
+        
+        private object cVVField;
+        
+        private object amountField;
+        
+        private object bankResponseField;
+        
+        private object bankResponseIDField;
+        
+        private object statusField;
+        
+        /// <remarks/>
+        public object merchantID {
+            get {
+                return this.merchantIDField;
+            }
+            set {
+                this.merchantIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object bankID {
+            get {
+                return this.bankIDField;
+            }
+            set {
+                this.bankIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object currencyID {
+            get {
+                return this.currencyIDField;
+            }
+            set {
+                this.currencyIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object cardType {
+            get {
+                return this.cardTypeField;
+            }
+            set {
+                this.cardTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object cardNumber {
+            get {
+                return this.cardNumberField;
+            }
+            set {
+                this.cardNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object nameOnCard {
+            get {
+                return this.nameOnCardField;
+            }
+            set {
+                this.nameOnCardField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object expiryMonth {
+            get {
+                return this.expiryMonthField;
+            }
+            set {
+                this.expiryMonthField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object expiryYear {
+            get {
+                return this.expiryYearField;
+            }
+            set {
+                this.expiryYearField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object CVV {
+            get {
+                return this.cVVField;
+            }
+            set {
+                this.cVVField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object amount {
+            get {
+                return this.amountField;
+            }
+            set {
+                this.amountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object BankResponse {
+            get {
+                return this.bankResponseField;
+            }
+            set {
+                this.bankResponseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object bankResponseID {
+            get {
+                return this.bankResponseIDField;
+            }
+            set {
+                this.bankResponseIDField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
     public delegate void processPaymentCompletedEventHandler(object sender, processPaymentCompletedEventArgs e);
     
@@ -450,6 +649,32 @@ namespace PaymentGateway.Transaction {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((System.Data.DataSet)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    public delegate void getPaymentTransactionByTransactionIDCompletedEventHandler(object sender, getPaymentTransactionByTransactionIDCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.7.2556.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class getPaymentTransactionByTransactionIDCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal getPaymentTransactionByTransactionIDCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public viewPaymentTransactionDataType Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((viewPaymentTransactionDataType)(this.results[0]));
             }
         }
     }

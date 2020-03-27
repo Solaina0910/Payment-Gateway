@@ -151,56 +151,59 @@ namespace PaymentGatewayAPI
         }
 
 
-        //[WebMethod()]
-        //public Transaction.DataTypes.viewPaymentTransactionDataType retrievePaymentTransactionByTransactionID(string transactionID)
-        //{
-        //    SqlConnection con = new SqlConnection();
-        //    con.ConnectionString = ConfigurationManager.ConnectionStrings["DBconnection"].ToString();
-        //    SqlCommand sqlcmd = new SqlCommand();
-        //    SqlDataReader dr;
+        [WebMethod()]
+        public Transaction.DataTypes.viewPaymentTransactionDataType getPaymentTransactionByTransactionID(string transactionID)
+        {
+            SqlConnection con = new SqlConnection();
+            con.ConnectionString = ConfigurationManager.ConnectionStrings["DBconnection"].ToString();
+            SqlCommand sqlcmd = new SqlCommand();
+            SqlDataReader dr;
 
-        //    var paymentTransactionDataType = new Transaction.DataTypes.viewPaymentTransactionDataType();
+            var paymentTransactionDataType = new Transaction.DataTypes.viewPaymentTransactionDataType();
 
-        //    try
-        //    {
-        //        sqlcmd.CommandText = "SELECT * FROM PaymentTransaction WHERE TransactionID = @TransactionID ";
-        //        sqlcmd.Parameters.AddWithValue("@TransactionID", transactionID);
+            try
+            {
+                sqlcmd.CommandText = "SELECT * FROM PaymentTransaction WHERE TransactionID = @TransactionID ";
+                sqlcmd.Parameters.AddWithValue("@TransactionID", transactionID);
 
-        //        sqlcmd.Connection = con;
-        //        con.Open();
-        //        dr = sqlcmd.ExecuteReader();
+                sqlcmd.Connection = con;
+                con.Open();
+                dr = sqlcmd.ExecuteReader();
 
 
 
-        //        if (dr.HasRows)
-        //        {
-        //            while (dr.Read())
-        //            {
-        //                paymentTransactionDataType.merchantID = dr["MerchantID"].ToString();
-        //                paymentTransactionDataType.bankID = dr["BankID"].ToString();
-        //                paymentTransactionDataType.currencyID = dr["CurrencyID"].ToString();
-        //                paymentTransactionDataType.cardType = dr["CardType"].ToString();
-        //                paymentTransactionDataType.cardNumber = dr["CardNumber"].ToString();
-        //                paymentTransactionDataType.nameOnCard = dr["NameOnCard"].ToString();
-        //                paymentTransactionDataType.expiryMonth = dr["ExpiryMonth"].ToString();
-        //                paymentTransactionDataType.expiryYear = dr["ExpiryYear"].ToString();
-        //                paymentTransactionDataType.CVV = dr["CVV"].ToString();
-        //                paymentTransactionDataType.amount = dr["Amount"].ToString();
-        //            }
-        //        }
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        paymentTransactionDataType.merchantID = dr["MerchantID"].ToString();
+                        paymentTransactionDataType.bankID = dr["BankID"].ToString();
+                        paymentTransactionDataType.currencyID = dr["CurrencyID"].ToString();
+                        paymentTransactionDataType.cardType = dr["CardType"].ToString();
+                        paymentTransactionDataType.cardNumber = dr["CardNumber"].ToString();
+                        paymentTransactionDataType.nameOnCard = dr["NameOnCard"].ToString();
+                        paymentTransactionDataType.expiryMonth = dr["ExpiryMonth"].ToString();
+                        paymentTransactionDataType.expiryYear = dr["ExpiryYear"].ToString();
+                        paymentTransactionDataType.CVV = dr["CVV"].ToString();
+                        paymentTransactionDataType.amount = dr["Amount"].ToString();
+                        paymentTransactionDataType.BankResponse = dr["BankResponse"].ToString();
+                        paymentTransactionDataType.bankResponseID = dr["BankResponseID"].ToString();
+                        paymentTransactionDataType.status = dr["Status"].ToString();
+                    }
+                }
 
-        //        dr.Close();
-        //    }
-        //    catch (Exception) { }
+                dr.Close();
+            }
+            catch (Exception) { }
 
-        //    finally
-        //    {
-        //        con.Close();
-        //        con.Dispose();
-        //    }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
 
-        //    return paymentTransactionDataType;
-        //}
+            return paymentTransactionDataType;
+        }
 
         [WebMethod()]
         public void UpdateStatusPaymentTransaction(string transactionID, string bankResponse, string status, Guid bankResponseID)
@@ -392,22 +395,25 @@ namespace PaymentGatewayAPI
             return ds_transactions;
         }
 
-        //public class DataTypes
-        //{
-        //    public class viewPaymentTransactionDataType
-        //    {
-        //        public object merchantID;
-        //        public object bankID;
-        //        public object currencyID;
-        //        public object cardType;
-        //        public object cardNumber;
-        //        public object nameOnCard;
-        //        public object expiryMonth;
-        //        public object expiryYear;
-        //        public object CVV;
-        //        public object amount;
-        //    }
-        //}
+        public class DataTypes
+        {
+            public class viewPaymentTransactionDataType
+            {
+                public object merchantID;
+                public object bankID;
+                public object currencyID;
+                public object cardType;
+                public object cardNumber;
+                public object nameOnCard;
+                public object expiryMonth;
+                public object expiryYear;
+                public object CVV;
+                public object amount;
+                public object BankResponse;
+                public object bankResponseID;
+                public object status;
+            }
+        }
 
 
 

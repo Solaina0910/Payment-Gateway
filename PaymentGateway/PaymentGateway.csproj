@@ -374,6 +374,9 @@
     <None Include="Project_Readme.html" />
     <Content Include="Site.Mobile.Master" />
     <None Include="Web References\Transaction\Transaction.wsdl" />
+    <Content Include="Web References\Transaction\viewPaymentTransactionDataType.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
